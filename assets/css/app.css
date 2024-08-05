@@ -1,0 +1,153 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* Base colors */
+:root {
+  --olive: #708238;
+  --gray: #e0e0e0;
+  --orange: #f4a300;
+}
+
+/* General styles */
+body {
+  background-color: var(--gray);
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+/* Header */
+.header {
+  background-color: var(--olive);
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+.header .button {
+  background-color: var(--orange);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.header .button:hover {
+  background-color: #e89700; /* Slightly darker orange for hover */
+}
+
+/* Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.table th {
+  background-color: var(--olive);
+  color: white;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f9f9f9; /* Light gray for even rows */
+}
+
+.table tr:hover {
+  background-color: var(--gray); /* Gray background on hover */
+}
+
+/* Form */
+.simple_form {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding: 2rem;
+  margin: 1rem auto;
+  max-width: 500px;
+}
+
+.simple_form .input {
+  margin-bottom: 1rem;
+}
+
+.simple_form .input label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.simple_form .input input[type="text"] {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.simple_form .input input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+.simple_form .button {
+  background-color: var(--orange);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.simple_form .button:hover {
+  background-color: #e89700; /* Slightly darker orange for hover */
+}
+
+/* Modal */
+.modal {
+  background-color: rgba(0,0,0,0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal .modal-content {
+  background-color: white;
+  border-radius: 8px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 100%;
+}
+
+/* Button Classes */
+.btn-new-task {
+  background-color: var(--orange);
+  color: white;
+}
+
+.btn-new-task:hover {
+  background-color: #e89700; /* Slightly darker orange for hover */
+}
+
+.btn-edit {
+  background-color: var(--olive);
+  color: white;
+}
+
+.btn-edit:hover {
+  background-color: #5c6f3e; /* Slightly darker olive for hover */
+}
+
+.btn-delete {
+  background-color: #ff6f6f;
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #e04e4e; /* Slightly darker red for hover */
+}
