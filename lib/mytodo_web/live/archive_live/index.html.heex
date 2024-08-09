@@ -1,0 +1,42 @@
+<.header>
+  Listing Archives
+  <:actions>
+    <.link patch={~p"/archives/new"}>
+      <.button>New Archive</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="archives"
+  rows={@streams.archives}
+  row_click={fn {_id, archive} -> JS.navigate(~p"/archives/#{archive}") end}
+>
+  <:col :let={{_id, archive}} label="Title"><%= archive.title %></:col>
+  <:col :let={{_id, archive}} label="Completed"><%= archive.completed %></:col>
+  <:action :let={{_id, archive}}>
+    <div class="sr-only">
+      <.link navigate={~p"/archives/#{archive}"}>Show</.link>
+    </div>
+    <.link patch={~p"/archives/#{archive}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, archive}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: archive.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="archive-modal" show on_cancel={JS.patch(~p"/archives")}>
+  <.live_component
+    module={MytodoWeb.ArchiveLive.FormComponent}
+    id={@archive.id || :new}
+    title={@page_title}
+    action={@live_action}
+    archive={@archive}
+    patch={~p"/archives"}
+  />
+</.modal>

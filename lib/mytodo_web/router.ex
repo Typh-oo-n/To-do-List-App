@@ -71,6 +71,13 @@ defmodule MytodoWeb.Router do
     live "/tasks/:id", TaskLive.Show, :show
     live "/tasks/:id/show/edit", TaskLive.Show, :edit
 
+    live "/archives", ArchiveLive.Index, :index
+    live "/archives/new", ArchiveLive.Index, :new
+    live "/archives/:id/edit", ArchiveLive.Index, :edit
+
+    live "/archives/:id", ArchiveLive.Show, :show
+    live "/archives/:id/show/edit", ArchiveLive.Show, :edit
+
     live_session :require_authenticated_user,
       on_mount: [{MytodoWeb.UserAuth, :ensure_authenticated}] do
       live "/users/settings", UserSettingsLive, :edit
