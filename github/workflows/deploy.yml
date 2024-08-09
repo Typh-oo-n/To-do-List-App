@@ -1,0 +1,38 @@
+name: Deploy to Gigalixir
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Elixir
+      uses: erlef/setup-elixir@v1
+      with:
+        elixir-version: '1.16.1' # or the version you are using
+        otp-version: '26.2.2'   # or the version you are using
+
+    - name: Install dependencies
+      run: mix deps.get
+
+    - name: Compile
+      run: mix compile
+
+    - name: Create release
+      run: MIX_ENV=prod mix release
+
+    - name: Deploy to Gigalixir
+      env:
+        GIGALIXIR_API_KEY: ${{ secrets.GIGALIXIR_API_KEY }}
+      run: |
+        curl -X POST https://api.gigalixir.com/v1/apps/YOUR_APP_NAME/deploy \
+          -H "Authorization: Bearer $GIGALIXIR_API_KEY" \
+          -H "Content-Type: application/json" \
+          -d '{"ref": "refs/heads/master"}'
